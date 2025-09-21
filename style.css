@@ -1,11 +1,16 @@
+/* Custom styles that complement Tailwind CSS */
+
 body {
     font-family: 'Inter', sans-serif;
 }
 
+/* Provides the necessary top margin for sections when scrolling,
+   so the fixed header doesn't overlap them. */
 .scroll-mt-24 {
     scroll-margin-top: 6rem;
 }
 
+/* Underline animation for navigation links */
 .animated-underline {
     position: relative;
     display: inline-block;
@@ -18,7 +23,7 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: #5A189A;
+    background-color: #5A189A; /* primary color */
     transition: width 0.3s ease-in-out;
 }
 
@@ -26,7 +31,24 @@ body {
     width: 100%;
 }
 
+/* Hover effect for service and portfolio cards */
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/*
+  Simple fade-in animation for sections.
+  Initially, sections are invisible and slightly moved down.
+*/
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* This class is added by JavaScript when the section is visible */
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
