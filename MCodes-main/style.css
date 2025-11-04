@@ -1,0 +1,181 @@
+/* Custom styles that complement Tailwind CSS */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Provides the necessary top margin for sections when scrolling,
+   so the fixed header doesn't overlap them. */
+.scroll-mt-24 {
+    scroll-margin-top: 6rem;
+}
+
+/* Underline animation for navigation links */
+.animated-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #8B5CF6; /* primary color (updated) */
+    transition: width 0.3s ease-in-out;
+}
+
+.animated-underline:hover::after {
+    width: 100%;
+}
+
+/* Hover effect for service and portfolio cards */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/*
+  Simple fade-in animation for sections.
+  This is NOT used on the services page, but is used on others.
+*/
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* This class is added by JavaScript when the section is visible */
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* === Polished Service Poster Styles === */
+
+.service-poster-wrapper {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden; /* Ensures the zooming image doesn't bleed out */
+    border-radius: 0.5rem; /* Matches rounded-lg */
+}
+
+/* 1. The Image Zoom Effect */
+.service-poster-wrapper img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; /* Ensures image covers the area, maintains aspect ratio */
+    transition: transform 0.4s ease-out, filter 0.4s ease-out;
+}
+
+.service-poster-wrapper:hover img {
+    transform: scale(1.1); /* Zoom in */
+    filter: brightness(0.7); /* Darken */
+}
+
+/* 2. The Slide-Up Text Overlay */
+.poster-overlay {
+    position: absolute;
+    bottom: 0; /* Aligns to the bottom */
+    left: 0;
+    right: 0;
+    
+    /* Starts translated 100% down (completely hidden) */
+    transform: translateY(100%);
+    
+    opacity: 0; /* Start hidden for a fade-in effect */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    
+    background: linear-gradient(to top, rgba(79, 70, 229, 0.9), rgba(79, 70, 229, 0.7)); /* dark-primary gradient */
+    padding: 1.5rem; /* p-6 */
+    text-align: left; /* Aligns text left for a cleaner look */
+}
+
+.service-poster-wrapper:hover .poster-overlay {
+    /* Moves to its natural position (0 translation) */
+    transform: translateY(0);
+    opacity: 1; /* Fade in */
+}
+
+/* Bonus: Tweak text styles within the overlay */
+.poster-overlay h4 {
+    color: white;
+    font-weight: 700; /* bold */
+    font-size: 1.25rem; /* xl */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+.poster-overlay p {
+    color: #DDD6FE; /* secondary */
+    font-size: 0.875rem; /* sm */
+}
+
+/* === NEW: Interactive Contact Card Styles === */
+
+.card-container {
+    display: grid;
+    grid-template-areas: "stack";
+}
+
+.contact-card {
+    grid-area: stack;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    visibility: hidden;
+    
+    /* This is the "Frosted Glass" effect */
+    background-color: rgba(51, 65, 85, 0.8); /* bg-dark-card/80 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-xl */
+}
+
+.contact-card.active-card {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition-delay: 0.3s; 
+}
+    
+/* Special gradient for the "Call" card */
+#call-card {
+    background: linear-gradient(to bottom right, rgba(139, 92, 246, 0.8), rgba(79, 70, 229, 0.8));
+}
+
+/* === NEW: Gradient Glow Styles === */
+.contact-glow {
+    position: absolute;
+    border-radius: 9999px; /* rounded-full */
+    opacity: 0.2;
+    filter: blur(64px); /* blur-3xl */
+    animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    width: 24rem; /* w-96 */
+    height: 24rem; /* h-96 */
+}
+.glow-1 {
+    top: -25%;
+    left: -25%;
+    background-color: #8B5CF6; /* primary */
+}
+.glow-2 {
+    bottom: -25%;
+    right: -25%;
+    background-color: #6366F1; /* accent */
+    animation-delay: 3s;
+}
+
+/* === NEW: Keyframes for the animation === */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
+  }
+}
